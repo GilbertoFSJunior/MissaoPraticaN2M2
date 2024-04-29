@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo de Receitas</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      .container-fluid {
+        background-color: #ffc107; /* bg-warning */
+        padding: 40px;
+        margin-top: 20px;
+      }
+      #pnlCatalogo {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; /* Espaçamento igual entre os itens */
+        padding: 20px;
+        margin-top: 20px;
+      }
+      .card {
+        flex: 1 0 30%;
+        margin-bottom: 20px; /* Espaçamento entre os cards */
+        margin-right: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+      .card-text {
+        font-size: 12px;
+        color: #666;
+      }
+      .card-title {
+        font-size: 1.2rem;
+        color: #333;
+      }
+      .card-text ul {
+        list-style-type: disc;
+        padding-left: 20px;
+      }
+    </style>
+  </head>
+  <body onload="preencheCatalogo()">
+    <div class="container-fluid">
+      <div id="pnlCatalogo"></div>
+    </div>
+
+    <script>
+      const receitas = [
+        {
+          titulo: "Bolo de Chocolate",
+          imagem: "bolo_chocolate.png",
+          preparo:
+            "Preaqueça o forno a 180°C. Em uma tigela, misture a farinha, o cacau em pó, o fermento e o sal. Em outra tigela, bata a manteiga com o açúcar até ficar cremoso. Adicione os ovos, um de cada vez, batendo bem após cada adição. Junte a mistura de farinha alternadamente com o leite, começando e terminando com a mistura de farinha. Despeje a massa em uma forma untada e leve ao forno por 30-35 minutos.",
+          ingredientes: [
+            "2 xícaras de farinha de trigo",
+            "1 xícara de cacau em pó",
+            "1 colher de chá de fermento em pó",
+            "1/2 colher de chá de sal",
+            "1 xícara de manteiga",
+            "2 xícaras de açúcar",
+            "4 ovos",
+            "1 xícara de leite",
+          ],
+        },
+        {
+          titulo: "Salada Caesar",
+          imagem: "salada_caesar.png",
+          preparo:
+            "Em uma tigela grande, misture o alface romana picado, croutons e queijo parmesão ralado. Em uma tigela pequena, misture o molho de salada Caesar, suco de limão, alho picado, mostarda dijon, molho inglês, pimenta do reino moída e azeite de oliva. Despeje sobre a salada e misture bem.",
+          ingredientes: [
+            "1 pé de alface romana",
+            "1 xícara de croutons",
+            "1/2 xícara de queijo parmesão ralado",
+            "1/4 de xícara de molho de salada Caesar",
+            "1 colher de sopa de suco de limão",
+            "1 dente de alho picado",
+            "1 colher de chá de mostarda dijon",
+            "1 colher de chá de molho inglês",
+            "Pimenta do reino moída a gosto",
+            "1/4 de xícara de azeite de oliva",
+          ],
+        },
+
+        {
+          titulo: "Fricassê de Frango Cremoso",
+          imagem: "fricasse_frango.png",
+          preparo:
+            "No liquidificador, coloque 1 xícara de água, 300 gramas de milho-verde, 1 copo de requeijão cremoso, 1 lata de creme de leite e bata até obter uma mistura homogênea, em uma panela, acrescente o creme feito no liquidificador, 100 gramas de azeitona sem caroço, 2 peitos de frango desfiados e 1 pitada de sal. Refogue até ficar com uma textura cremosa,Em seguida, despeje a mistura em um refratário de vidro. Depois, faça uma camada com os 200 gramas de muçarela. Leve o refratário ao forno a 200 graus Celsius até derreter a muçarela, Retire do forno e cubra o fricassê com 100 gramas de batata palha. Sirva em seguida.",
+          ingredientes: [
+            "1 xícara de água",
+            "300 gramas de milho-verde",
+            "1 copo de requeijão cremoso",
+            "1 lata de creme de leite",
+            "100 gramas de azeitona sem caroço",
+            "2 peitos de frango desfiados",
+            "1 pitada de sal",
+            "200 gramas de muçarela fatiada",
+            "100 gramas de batata palha",
+          ],
+        },
+        // Adicione mais receitas conforme necessário
+      ];
+
+      function getListaIngredientes(receita) {
+        const lista = receita.ingredientes
+          .map((ingrediente) => `<li>${ingrediente}</li>`)
+          .join("");
+        return `<ul>${lista}</ul>`;
+      }
+
+      function getCard(receita) {
+        return `
+    <div class="card" style="width: 250px;">
+        <img src="${receita.imagem}" class="card-img-top" alt="${
+          receita.titulo
+        }">
+        <div class="card-body">
+            <h5 class="card-title">${receita.titulo}</h5>
+            <div class="card-text">
+                ${getListaIngredientes(receita)}
+                <hr>
+                <p>${receita.preparo}</p>
+            </div>
+        </div>
+    </div>
+    `;
+      }
+
+      function preencheCatalogo() {
+        const pnlCatalogo = document.getElementById("pnlCatalogo");
+        const htmlReceitas = receitas
+          .map((receita) => getCard(receita))
+          .join("");
+        pnlCatalogo.innerHTML = htmlReceitas;
+      }
+
+      // Chamada da função preencheCatalogo() no evento onload do elemento body
+      window.onload = preencheCatalogo;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ordenando com JavaScript e DOM</title>
+  </head>
+  <!--Ajustando as caracteristicas da página-->
+  <style>
+    /* grupos de entrada e botões */
+    .input-group {
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #valor,
+    #algoritmo {
+      height: 40px; /* Define a altura */
+      width: calc(
+        33% - 10px
+      ); /* define 1/3 da largura da página com margem à direita */
+      margin-bottom: 10px;
+      margin-right: 10px; /* Margem direita para separar o botão */
+    }
+
+    button {
+      background-color: aqua;
+      color: white;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      height: 40px;
+      width: 100px;
+    }
+
+    button:hover {
+      background-color: darkblue;
+    }
+
+    .button-group button {
+      margin-right: 10px;
+    }
+
+    /* Estilo da lista de valores */
+    #valores {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #valores li {
+      margin-bottom: 5px;
+    }
+
+    /* Posicionamento */
+    .button-group {
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button-group {
+      margin-top: 10px;
+    }
+
+    .select-group {
+      width: calc(
+        33% - 10px
+      ); /* Define 1/3 da largura da página com margem à direita */
+      margin-right: 10px; /* Margem direita para separar os botões */
+    }
+  </style>
+  <body>
+    <h1>Ordenando Valores</h1>
+
+    <!-- Campo de entrada -->
+    <div class="input-group">
+      <input type="number" id="valor" />
+      <!-- Campo de entrada -->
+      <button
+        onclick="add()"
+        style="background-color: rgb(22, 121, 187); color: white"
+      >
+        Adicionar
+      </button>
+    </div>
+
+    <!-- Campo de seleção -->
+    <div class="input-group">
+      <select id="algoritmo">
+        <option value="bubble" selected>Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="quick">Quick Sort</option>
+      </select>
+    </div>
+
+    <!-- Botões de Ordenar e Misturar -->
+    <div class="button-group">
+      <!-- Botão para ordenar -->
+      <button
+        onclick="ordenar()"
+        style="background-color: rgb(22, 121, 187); color: white"
+      >
+        Ordenar
+      </button>
+      <!-- Botão para misturar -->
+      <button
+        onclick="misturar()"
+        style="background-color: rgb(22, 121, 187); color: white"
+      >
+        Misturar
+      </button>
+    </div>
+
+    <!-- Lista dos valores -->
+    <ul id="valores"></ul>
+
+    <!-- Script  JS com as funções -->
+    <script src="ordenando.js"></script>
+  </body>
+</html>
